@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Kelas 6 - SD Negeri Maju Jaya</title>
+    <title>Kelas 6 Auriga - Global Mandiri Patrol</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -11,6 +11,7 @@
         :root {
             --primary: #4e73df;
             --primary-dark: #3a56c4;
+            --primary-light: #7a9eff;
             --secondary: #858796;
             --success: #1cc88a;
             --info: #36b9cc;
@@ -19,9 +20,9 @@
             --light: #f8f9fc;
             --dark: #5a5c69;
             --font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-            --transition: all 0.3s ease;
+            --transition: all 0.2s ease;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.15);
+            --shadow-hover: 0 6px 10px rgba(0, 0, 0, 0.15);
         }
 
         /* Global Styles */
@@ -40,30 +41,7 @@
             flex-direction: column;
             min-height: 100vh;
             transition: var(--transition);
-        }
-
-        .dark-mode {
-            background-color: #1a1a1a;
-            color: #f0f0f0;
-        }
-
-        .dark-mode section,
-        .dark-mode .stat-card,
-        .dark-mode .task-item,
-        .dark-mode .announcement,
-        .dark-mode .student-card,
-        .dark-mode .contact-item,
-        .dark-mode .schedule th {
-            background-color: #2d2d2d;
-            color: #f0f0f0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        .dark-mode .schedule tr:hover,
-        .dark-mode .task-item:hover,
-        .dark-mode .student-card:hover,
-        .dark-mode .contact-item:hover {
-            background-color: #3a3a3a;
+            overflow-x: hidden;
         }
 
         .container {
@@ -76,7 +54,7 @@
         header {
             background: linear-gradient(90deg, var(--primary) 0%, var(--info) 100%);
             color: white;
-            padding: 1rem 0;
+            padding: 0.8rem 0;
             box-shadow: var(--shadow);
             position: sticky;
             top: 0;
@@ -87,6 +65,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .logo {
@@ -95,28 +74,35 @@
             gap: 10px;
         }
 
+        .logo img {
+            height: 50px;
+            width: auto;
+            border-radius: 5px;
+        }
+
         .logo h1 {
             font-size: 1.5rem;
+            white-space: nowrap;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 0.8rem;
         }
 
         nav a {
             color: white;
             text-decoration: none;
             font-weight: 600;
-            padding: 0.5rem;
-            border-radius: 4px;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
             transition: var(--transition);
+            white-space: nowrap;
         }
 
         nav a:hover, nav a.active {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+            background-color: rgba(255, 255, 255, 0.15);
         }
 
         .mobile-menu-btn {
@@ -126,6 +112,11 @@
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
+            padding: 0.5rem;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         main {
@@ -135,29 +126,24 @@
 
         .page {
             display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .page.active {
             display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         section {
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             background: white;
-            border-radius: 8px;
+            border-radius: 10px;
             box-shadow: var(--shadow);
             padding: 1.5rem;
-            transition: var(--transition);
-        }
-
-        section:hover {
-            box-shadow: var(--shadow-hover);
         }
 
         h2 {
@@ -178,7 +164,7 @@
             background-color: var(--dark);
             color: white;
             text-align: center;
-            padding: 1.5rem 0;
+            padding: 1.2rem 0;
             margin-top: 2rem;
         }
 
@@ -205,24 +191,43 @@
             background-color: var(--primary-dark);
         }
 
+        /* Sambutan Section */
+        .welcome {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--info) 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .welcome h2 {
+            color: white;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            justify-content: center;
+        }
+
+        .welcome p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         /* Dashboard Stats */
         .stats-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
             margin-bottom: 2rem;
         }
 
         .stat-card {
             background: white;
-            border-radius: 8px;
+            border-radius: 10px;
             box-shadow: var(--shadow);
             padding: 1.5rem;
             text-align: center;
             transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .stat-card:hover {
@@ -244,13 +249,13 @@
         }
 
         .stat-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--secondary);
             margin-bottom: 0.5rem;
         }
 
         .stat-card .number {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: var(--primary);
         }
@@ -267,7 +272,7 @@
         }
 
         .schedule th, .schedule td {
-            padding: 0.75rem;
+            padding: 0.7rem;
             text-align: left;
             border-bottom: 1px solid #e3e6f0;
         }
@@ -276,10 +281,6 @@
             background-color: #eaecf4;
             color: var(--dark);
             font-weight: 700;
-        }
-
-        .schedule tr {
-            transition: var(--transition);
         }
 
         .schedule tr:hover {
@@ -296,28 +297,21 @@
             border-left: 4px solid var(--primary);
             margin-bottom: 1rem;
             background-color: #f8f9fc;
-            border-radius: 0 4px 4px 0;
+            border-radius: 0 6px 6px 0;
             transition: var(--transition);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .task-item:hover {
-            transform: translateX(5px);
+            transform: translateX(3px);
         }
 
         .task-item.urgent {
             border-left-color: var(--danger);
         }
 
-        .task-content {
-            flex: 1;
-        }
-
         .task-title {
             font-weight: 700;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.3rem;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -335,41 +329,18 @@
             gap: 5px;
         }
 
-        .task-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .task-btn {
-            padding: 0.5rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .task-btn.complete {
-            background-color: var(--success);
-            color: white;
-        }
-
-        .task-btn.edit {
-            background-color: var(--warning);
-            color: white;
-        }
-
         /* Announcements */
         .announcement {
             padding: 1rem;
             border-left: 4px solid var(--info);
             margin-bottom: 1rem;
             background-color: #f8f9fc;
-            border-radius: 0 4px 4px 0;
+            border-radius: 0 6px 6px 0;
             transition: var(--transition);
         }
 
         .announcement:hover {
-            transform: translateX(5px);
+            transform: translateX(3px);
         }
 
         .announcement h3 {
@@ -397,16 +368,10 @@
 
         .search-box input {
             width: 100%;
-            padding: 0.75rem 1rem 0.75rem 40px;
+            padding: 0.8rem 1rem 0.8rem 40px;
             border: 1px solid #d1d3e2;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .search-box input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
         }
 
         .search-icon {
@@ -419,8 +384,8 @@
 
         .students-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.2rem;
         }
 
         .student-card {
@@ -429,7 +394,6 @@
             overflow: hidden;
             text-align: center;
             transition: var(--transition);
-            position: relative;
         }
 
         .student-card:hover {
@@ -439,14 +403,14 @@
 
         .student-img {
             width: 100%;
-            height: 180px;
+            height: 160px;
             object-fit: cover;
             background: linear-gradient(45deg, var(--primary), var(--info));
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
 
         .student-info {
@@ -455,7 +419,7 @@
 
         .student-name {
             font-weight: 700;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.3rem;
         }
 
         .student-nis {
@@ -463,34 +427,17 @@
             font-size: 0.9rem;
         }
 
-        .student-contact {
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .student-contact a {
-            color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .student-contact a:hover {
-            color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
         /* Gallery */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 1rem;
         }
 
         .gallery-item {
             border-radius: 8px;
             overflow: hidden;
-            height: 200px;
+            height: 180px;
             background: linear-gradient(45deg, #4e73df, #36b9cc);
             display: flex;
             align-items: center;
@@ -498,51 +445,16 @@
             color: white;
             font-size: 1.5rem;
             transition: var(--transition);
-            cursor: pointer;
-            position: relative;
         }
 
         .gallery-item:hover {
             transform: scale(1.03);
         }
 
-        .gallery-item::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover::after {
-            opacity: 1;
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 10px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            transform: translateY(100%);
-            transition: var(--transition);
-            z-index: 1;
-        }
-
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
-        }
-
         /* Activities */
         .activities {
             position: relative;
-            padding-left: 1.5rem;
+            padding-left: 1.8rem;
         }
 
         .activities::before {
@@ -552,7 +464,7 @@
             bottom: 0;
             left: 10px;
             width: 2px;
-            background-color: #e0e0e0;
+            background-color: var(--primary);
         }
 
         .activity {
@@ -563,10 +475,10 @@
         .activity::before {
             content: '';
             position: absolute;
-            top: 5px;
-            left: -1.5rem;
-            width: 12px;
-            height: 12px;
+            top: 8px;
+            left: -1.8rem;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
             background-color: var(--primary);
             border: 2px solid white;
@@ -576,34 +488,41 @@
         .activity-date {
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.3rem;
             display: flex;
             align-items: center;
             gap: 5px;
         }
 
         /* Contact */
-        .contact-list {
-            list-style: none;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
         }
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background-color: #f8f9fc;
-            border-radius: 4px;
+        .contact-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
             transition: var(--transition);
         }
 
-        .contact-item:hover {
-            transform: translateX(5px);
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .contact-icon {
-            width: 50px;
-            height: 50px;
+        .contact-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card-icon {
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             background-color: var(--primary);
             color: white;
@@ -611,103 +530,135 @@
             align-items: center;
             justify-content: center;
             margin-right: 1rem;
-            flex-shrink: 0;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
-        .contact-info {
-            flex: 1;
+        /* Teacher Profiles */
+        .teacher-profiles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
         }
 
-        .contact-name {
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        .contact-detail {
-            color: var(--secondary);
-        }
-
-        .contact-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .contact-btn {
-            padding: 0.5rem;
-            border: none;
-            border-radius: 4px;
-            background-color: var(--primary);
-            color: white;
-            cursor: pointer;
+        .teacher-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
             transition: var(--transition);
+            display: flex;
+            align-items: center;
         }
 
-        .contact-btn:hover {
-            background-color: var(--primary-dark);
+        .teacher-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
         }
 
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
+        .teacher-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--info));
+            display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            margin-right: 1.2rem;
         }
 
-        .modal-content {
-            background-color: white;
-            border-radius: 8px;
-            padding: 2rem;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: var(--shadow-hover);
-            position: relative;
-            animation: modalFadeIn 0.3s ease;
+        .teacher-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
         }
 
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Responsive Styles */
+        @media (max-width: 1100px) {
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+            
+            nav ul {
+                gap: 0.5rem;
+            }
+            
+            nav a {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+            }
         }
 
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--secondary);
-            transition: var(--transition);
-        }
-
-        .close-modal:hover {
-            color: var(--danger);
-        }
-
-        /* Responsive */
         @media (max-width: 992px) {
             .stats-container {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .header-content {
+                flex-wrap: wrap;
+                position: relative;
+            }
+            
+            .logo {
                 flex-direction: column;
-                gap: 1rem;
+                text-align: center;
+                margin-bottom: 0.5rem;
+                width: 100%;
+            }
+            
+            .logo h1 {
+                margin-top: 0.5rem;
+                font-size: 1.3rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            nav {
+                flex-basis: 100%;
+                order: 3;
+                display: none;
+                margin-top: 1rem;
+            }
+            
+            nav.active {
+                display: block;
             }
             
             nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
+                flex-direction: column;
                 gap: 0.5rem;
+            }
+            
+            nav li {
+                width: 100%;
+            }
+            
+            nav a {
+                display: block;
+                text-align: center;
+                padding: 0.8rem;
+                border-radius: 4px;
+            }
+
+            /* Mobile: Bintang di atas teks sambutan */
+            .welcome h2 {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo h1 {
+                font-size: 1.2rem;
             }
             
             .stats-container {
@@ -715,55 +666,72 @@
             }
             
             .students-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             }
-
-            .mobile-menu-btn {
-                display: block;
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
+            
+            .welcome {
+                padding: 1.5rem;
             }
-
-            nav {
-                display: none;
-                width: 100%;
-            }
-
-            nav.active {
-                display: block;
-            }
-
-            nav ul {
+            
+            .teacher-card {
                 flex-direction: column;
-                gap: 0;
+                text-align: center;
+            }
+            
+            .teacher-img {
+                margin-right: 0;
+                margin-bottom: 1rem;
             }
 
-            nav li {
-                width: 100%;
+            /* Perbaikan kontak untuk mobile */
+            .contact-card-header {
+                flex-direction: column;
+                text-align: center;
             }
-
-            nav a {
-                display: block;
-                padding: 1rem;
-                border-radius: 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            
+            .contact-card-icon {
+                margin-right: 0;
+                margin-bottom: 0.8rem;
             }
         }
 
-        /* Loading animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
+        @media (min-width: 901px) {
+            /* Desktop: logo di kiri, navigasi di kanan */
+            .header-content {
+                justify-content: space-between;
+            }
+            
+            .logo {
+                flex-direction: row;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            nav {
+                display: block !important;
+            }
+
+            /* Desktop: Bintang di kiri teks sambutan */
+            .welcome h2 {
+                flex-direction: row;
+            }
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 1.1rem;
+            }
+            
+            .logo img {
+                height: 40px;
+            }
+
+            /* Perbaikan kontak untuk perangkat sangat kecil */
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -771,8 +739,8 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <i class="fas fa-graduation-cap"></i>
-                <h1>Kelas 6 - SD Negeri Maju Jaya</h1>
+                <img src="logo.jpeg" alt="Logo Kelas Auriga">
+                <h1>Kelas 6 Auriga - Global Mandiri Patrol</h1>
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
@@ -781,10 +749,7 @@
                 <ul>
                     <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> Beranda</a></li>
                     <li><a href="#" class="nav-link" data-page="students"><i class="fas fa-users"></i> Siswa</a></li>
-                    <li><a href="#" class="nav-link" data-page="schedule"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
-                    <li><a href="#" class="nav-link" data-page="tasks"><i class="fas fa-tasks"></i> Tugas</a></li>
-                    <li><a href="#" class="nav-link" data-page="gallery"><i class="fas fa-images"></i> Galeri</a></li>
-                    <li><a href="#" class="nav-link" data-page="contact"><i class="fas fa-address-book"></i> Kontak</a></li>
+                    <li><a href="#" class="nav-link" data-page="info"><i class="fas fa-info-circle"></i> Informasi</a></li>
                 </ul>
             </nav>
         </div>
@@ -793,6 +758,34 @@
     <main class="container">
         <!-- Halaman Beranda -->
         <div id="home" class="page active">
+            <section class="welcome">
+                <h2>
+                    <i class="fas fa-star"></i>
+                    <span>Selamat Datang di Website Kelas 6 Auriga</span>
+                </h2>
+                <p>Website ini dibuat untuk memudahkan siswa, guru, dan orang tua dalam mengakses informasi terkait kegiatan pembelajaran di kelas 6 Auriga, Global Mandiri Patrol.</p>
+            </section>
+
+            <section id="profil-guru">
+                <h2><i class="fas fa-chalkboard-teacher"></i> Profil Guru</h2>
+                <div class="teacher-profiles">
+                    <div class="teacher-card">
+                        <div class="teacher-img"><i class="fas fa-user"></i></div>
+                        <div class="teacher-info">
+                            <h3>Tasirih, S.Pd</h3>
+                            <p><strong>Hobi:</strong> Membaca, Menonton, dan jalan-jalan</p>
+                        </div>
+                    </div>
+                    <div class="teacher-card">
+                        <div class="teacher-img"><i class="fas fa-user"></i></div>
+                        <div class="teacher-info">
+                            <h3>Meilina, S.Pd</h3>
+                            <p><strong>Hobi:</strong> Memasak dan berenang</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section id="statistik">
                 <h2><i class="fas fa-chart-line"></i> Statistik Kelas</h2>
                 <div class="stats-container">
@@ -801,7 +794,7 @@
                             <i class="fas fa-user-graduate"></i>
                         </div>
                         <h3>Jumlah Siswa</h3>
-                        <div class="number">32</div>
+                        <div class="number">40</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">
@@ -812,17 +805,17 @@
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">
-                            <i class="fas fa-chart-bar"></i>
+                            <i class="fas fa-puzzle-piece"></i>
                         </div>
-                        <h3>Rata-rata Nilai</h3>
-                        <div class="number">85.2</div>
+                        <h3>Ekstrakurikuler</h3>
+                        <div class="number">4</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">
-                            <i class="fas fa-calendar-check"></i>
+                            <i class="fas fa-trophy"></i>
                         </div>
-                        <h3>Kehadiran</h3>
-                        <div class="number">94%</div>
+                        <h3>Prestasi</h3>
+                        <div class="number">15</div>
                     </div>
                 </div>
             </section>
@@ -830,14 +823,9 @@
             <section id="pengumuman">
                 <h2><i class="fas fa-bullhorn"></i> Pengumuman Terbaru</h2>
                 <div class="announcement">
-                    <h3><i class="fas fa-info-circle"></i> Ujian Semester 1</h3>
-                    <div class="announcement-date"><i class="far fa-calendar-alt"></i> 12 Oktober 2023</div>
-                    <p>Ujian semester 1 akan dilaksanakan pada tanggal 27 November - 5 Desember 2023. Seluruh siswa diharapkan mempersiapkan diri dengan baik.</p>
-                </div>
-                <div class="announcement">
-                    <h3><i class="fas fa-bus"></i> Study Tour ke Museum</h3>
-                    <div class="announcement-date"><i class="far fa-calendar-alt"></i> 5 Oktober 2023</div>
-                    <p>Kelas 6 akan mengadakan study tour ke Museum Nasional pada tanggal 25 Oktober 2023. Diharapkan membawa bekal makanan dan memakai seragam olahraga.</p>
+                    <h3><i class="fas fa-plus-circle"></i> Ditambahnya Ekstrakurikuler Coding</h3>
+                    <div class="announcement-date"><i class="far fa-calendar-alt"></i> 15 Maret 2025</div>
+                    <p>Mulai bulan April 2025, kelas 6 Auriga akan menambahkan ekstrakurikuler coding untuk meningkatkan kemampuan teknologi dan logika siswa.</p>
                 </div>
             </section>
 
@@ -845,42 +833,46 @@
                 <h2><i class="fas fa-calendar-day"></i> Kegiatan Terbaru</h2>
                 <div class="activities">
                     <div class="activity">
-                        <div class="activity-date"><i class="far fa-calendar"></i> 20 Oktober 2023</div>
-                        <div class="activity-title">Praktikum IPA - Pertumbuhan Tanaman</div>
-                        <div class="activity-desc">Melakukan observasi pertumbuhan kacang hijau dengan variasi cahaya</div>
+                        <div class="activity-date"><i class="far fa-calendar"></i> 25-27 April 2025</div>
+                        <div class="activity-title">Supercamp</div>
+                        <div class="activity-desc">Kegiatan perkemahan dan pembelajaran di alam terbuka untuk melatih kemandirian dan kerjasama tim.</div>
                     </div>
                     <div class="activity">
-                        <div class="activity-date"><i class="far fa-calendar"></i> 15 Oktober 2023</div>
-                        <div class="activity-title">Lomba Matematika Tingkat Kecamatan</div>
-                        <div class="activity-desc">Mengirim perwakilan untuk mengikuti lomba matematika</div>
+                        <div class="activity-date"><i class="far fa-calendar"></i> 15 Mei 2025</div>
+                        <div class="activity-title">LT (Lomba Tingkat) 1</div>
+                        <div class="activity-desc">Lomba tingkat untuk sebagai tahap awal untuk melatih dasar kedisiplinan, kebersamaan, dan pembentukan karakter peserta.</div>
                     </div>
                 </div>
             </section>
 
             <section id="kontak-singkat">
                 <h2><i class="fas fa-address-card"></i> Kontak Penting</h2>
-                <ul class="contact-list">
-                    <li class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-user"></i></div>
-                        <div class="contact-info">
-                            <div class="contact-name">Wali Kelas: Ibu Siti Rahayu, S.Pd</div>
-                            <div class="contact-detail">Email: siti.rahayu@sdnmajujaya.sch.id</div>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-card-header">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email</h3>
                         </div>
-                        <div class="contact-actions">
-                            <button class="contact-btn"><i class="fas fa-envelope"></i></button>
+                        <div class="contact-card-body">
+                            <p><i class="fas fa-at"></i> kelas6gmp@gmail.com</p>
+                            <p><i class="fas fa-at"></i> zhafranediting23@gmail.com</p>
                         </div>
-                    </li>
-                    <li class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-school"></i></div>
-                        <div class="contact-info">
-                            <div class="contact-name">Sekolah: SD Negeri Maju Jaya</div>
-                            <div class="contact-detail">Telp: (021) 7654321 | Email: info@sdnmajujaya.sch.id</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-header">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>Alamat</h3>
                         </div>
-                        <div class="contact-actions">
-                            <button class="contact-btn"><i class="fas fa-phone"></i></button>
+                        <div class="contact-card-body">
+                            <p><i class="fas fa-school"></i> Global Mandiri Patrol</p>
+                            <p><i class="fas fa-road"></i> Jl. Wirautama No. 163 Kec, Patrol, Kabupaten Indramayu, Jawa Barat 45258</p>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </section>
         </div>
 
@@ -893,78 +885,13 @@
                     <input type="text" id="search-student" placeholder="Cari nama siswa...">
                 </div>
                 <div class="students-grid" id="studentsContainer">
-                    <div class="student-card">
-                        <div class="student-img"><i class="fas fa-user"></i></div>
-                        <div class="student-info">
-                            <div class="student-name">Ahmad Fauzi</div>
-                            <div class="student-nis">NIS: 202301</div>
-                            <div class="student-contact">
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                                <a href="#"><i class="fas fa-phone"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="student-card">
-                        <div class="student-img"><i class="fas fa-user"></i></div>
-                        <div class="student-info">
-                            <div class="student-name">Budi Santoso</div>
-                            <div class="student-nis">NIS: 202302</div>
-                            <div class="student-contact">
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                                <a href="#"><i class="fas fa-phone"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="student-card">
-                        <div class="student-img"><i class="fas fa-user"></i></div>
-                        <div class="student-info">
-                            <div class="student-name">Citra Lestari</div>
-                            <div class="student-nis">NIS: 202303</div>
-                            <div class="student-contact">
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                                <a href="#"><i class="fas fa-phone"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="student-card">
-                        <div class="student-img"><i class="fas fa-user"></i></div>
-                        <div class="student-info">
-                            <div class="student-name">Dewi Anggraini</div>
-                            <div class="student-nis">NIS: 202304</div>
-                            <div class="student-contact">
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                                <a href="#"><i class="fas fa-phone"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="student-card">
-                        <div class="student-img"><i class="fas fa-user"></i></div>
-                        <div class="student-info">
-                            <div class="student-name">Eko Prasetyo</div>
-                            <div class="student-nis">NIS: 202305</div>
-                            <div class="student-contact">
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                                <a href="#"><i class="fas fa-phone"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="student-card">
-                        <div class="student-img"><i class="fas fa-user"></i></div>
-                        <div class="student-info">
-                            <div class="student-name">Fitri Handayani</div>
-                            <div class="student-nis">NIS: 202306</div>
-                            <div class="student-contact">
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                                <a href="#"><i class="fas fa-phone"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Daftar siswa akan diisi oleh JavaScript -->
                 </div>
             </section>
         </div>
 
-        <!-- Halaman Jadwal -->
-        <div id="schedule" class="page">
+        <!-- Halaman Informasi -->
+        <div id="info" class="page">
             <section>
                 <h2><i class="fas fa-calendar-alt"></i> Jadwal Pelajaran</h2>
                 <div class="schedule-container">
@@ -976,209 +903,154 @@
                                 <th>Pelajaran 2</th>
                                 <th>Pelajaran 3</th>
                                 <th>Pelajaran 4</th>
+                                <th>Pelajaran 5</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Senin</td>
-                                <td>Matematika</td>
-                                <td>Bahasa Indonesia</td>
-                                <td>IPA</td>
-                                <td>IPS</td>
+                                <td>IPAS</td>
+                                <td>Math</td>
+                                <td>Tahsin</td>
+                                <td>B. Inggris</td>
+                                <td>Budi Pekerti</td>
                             </tr>
                             <tr>
                                 <td>Selasa</td>
-                                <td>Bahasa Indonesia</td>
-                                <td>Matematika</td>
-                                <td>PJOK</td>
-                                <td>Seni Budaya</td>
+                                <td>B. Indonesia</td>
+                                <td>Seni</td>
+                                <td>Tahsin</td>
+                                <td>B. Inggris</td>
+                                <td>Math</td>
                             </tr>
                             <tr>
                                 <td>Rabu</td>
-                                <td>IPA</td>
-                                <td>Bahasa Inggris</td>
-                                <td>Matematika</td>
-                                <td>PPKn</td>
+                                <td>B. Indonesia</td>
+                                <td>PKN</td>
+                                <td>Tahsin</td>
+                                <td>Taekwondo</td>
+                                <td>Taekwondo</td>
                             </tr>
                             <tr>
                                 <td>Kamis</td>
-                                <td>IPS</td>
-                                <td>Bahasa Indonesia</td>
                                 <td>PJOK</td>
-                                <td>Agama</td>
+                                <td>PAI</td>
+                                <td>Tahsin</td>
+                                <td>Math</td>
+                                <td>B. Inggris</td>
                             </tr>
                             <tr>
-                                <td>Jumat</td>
-                                <td>Matematika</td>
-                                <td>IPA</td>
-                                <td>Bahasa Inggris</td>
-                                <td>Pramuka</td>
+                                <td>Jum'at</td>
+                                <td>B. Indonesia</td>
+                                <td>IPAS</td>
+                                <td>Math</td>
+                                <td>Math</td>
+                                <td>TIK</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <section>
-                <h2><i class="fas fa-calendar-check"></i> Jadwal Ujian</h2>
-                <div class="schedule-container">
-                    <table class="schedule">
-                        <thead>
-                            <tr>
-                                <th>Hari/Tanggal</th>
-                                <th>Mata Pelajaran</th>
-                                <th>Waktu</th>
-                                <th>Ruangan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Senin, 27 Nov</td>
-                                <td>Matematika</td>
-                                <td>08.00-09.30</td>
-                                <td>Ruang 6A</td>
-                            </tr>
-                            <tr>
-                                <td>Selasa, 28 Nov</td>
-                                <td>Bahasa Indonesia</td>
-                                <td>08.00-09.30</td>
-                                <td>Ruang 6A</td>
-                            </tr>
-                            <tr>
-                                <td>Rabu, 29 Nov</td>
-                                <td>IPA</td>
-                                <td>08.00-09.30</td>
-                                <td>Ruang 6A</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </div>
-
-        <!-- Halaman Tugas -->
-        <div id="tasks" class="page">
             <section>
                 <h2><i class="fas fa-tasks"></i> Tugas & Deadlines</h2>
                 <ul class="task-list" id="tasksContainer">
+                    <li class="task-item">
+                        <div class="task-content">
+                            <div class="task-title"><i class="fas fa-book"></i> Matematika - Latihan Soal</div>
+                            <div class="task-desc">Mengerjakan soal di halaman 45-47 tentang pecahan</div>
+                            <div class="task-deadline"><i class="far fa-clock"></i> Deadline: 25 Maret 2025</div>
+                        </div>
+                    </li>
+                    <li class="task-item">
+                        <div class="task-content">
+                            <div class="task-title"><i class="fas fa-flask"></i> IPAS - Percobaan Sains</div>
+                            <div class="task-desc">Membuat laporan percobaan tentang fotosintesis</div>
+                            <div class="task-deadline"><i class="far fa-clock"></i> Deadline: 28 Maret 2025</div>
+                        </div>
+                    </li>
                     <li class="task-item urgent">
                         <div class="task-content">
-                            <div class="task-title"><i class="fas fa-exclamation-circle"></i> Matematika - Latihan Soal Cerita</div>
-                            <div class="task-desc">Mengerjakan soal cerita di halaman 45-47</div>
-                            <div class="task-deadline"><i class="far fa-clock"></i> Deadline: 15 Oktober 2023</div>
-                        </div>
-                        <div class="task-actions">
-                            <button class="task-btn complete"><i class="fas fa-check"></i></button>
-                            <button class="task-btn edit"><i class="fas fa-edit"></i></button>
-                        </div>
-                    </li>
-                    <li class="task-item">
-                        <div class="task-content">
-                            <div class="task-title"><i class="fas fa-book"></i> IPA - Percobaan Sains</div>
-                            <div class="task-desc">Membuat laporan percobaan tanaman dan cahaya</div>
-                            <div class="task-deadline"><i class="far fa-clock"></i> Deadline: 18 Oktober 2023</div>
-                        </div>
-                        <div class="task-actions">
-                            <button class="task-btn complete"><i class="fas fa-check"></i></button>
-                            <button class="task-btn edit"><i class="fas fa-edit"></i></button>
-                        </div>
-                    </li>
-                    <li class="task-item">
-                        <div class="task-content">
-                            <div class="task-title"><i class="fas fa-pencil-alt"></i> Bahasa Indonesia - Menulis Cerpen</div>
+                            <div class="task-title"><i class="fas fa-pencil-alt"></i> B. Indonesia - Menulis Cerita</div>
                             <div class="task-desc">Membuat cerita pendek dengan tema persahabatan</div>
-                            <div class="task-deadline"><i class="far fa-clock"></i> Deadline: 20 Oktober 2023</div>
-                        </div>
-                        <div class="task-actions">
-                            <button class="task-btn complete"><i class="fas fa-check"></i></button>
-                            <button class="task-btn edit"><i class="fas fa-edit"></i></button>
+                            <div class="task-deadline"><i class="far fa-clock"></i> Deadline: 22 Maret 2025</div>
                         </div>
                     </li>
                 </ul>
-                <button id="addTaskBtn" class="contact-btn" style="margin-top: 15px;"><i class="fas fa-plus"></i> Tambah Tugas</button>
             </section>
-        </div>
 
-        <!-- Halaman Galeri -->
-        <div id="gallery" class="page">
             <section>
                 <h2><i class="fas fa-images"></i> Galeri Kegiatan</h2>
                 <div class="gallery-grid">
                     <div class="gallery-item">
                         <i class="fas fa-camera"></i>
-                        <div class="gallery-caption">Study Tour ke Museum</div>
                     </div>
                     <div class="gallery-item">
                         <i class="fas fa-camera"></i>
-                        <div class="gallery-caption">Praktikum IPA</div>
                     </div>
                     <div class="gallery-item">
                         <i class="fas fa-camera"></i>
-                        <div class="gallery-caption">Perayaan Hari Kemerdekaan</div>
                     </div>
                     <div class="gallery-item">
                         <i class="fas fa-camera"></i>
-                        <div class="gallery-caption">Kegiatan Pramuka</div>
                     </div>
                     <div class="gallery-item">
                         <i class="fas fa-camera"></i>
-                        <div class="gallery-caption">Lomba Matematika</div>
                     </div>
                     <div class="gallery-item">
                         <i class="fas fa-camera"></i>
-                        <div class="gallery-caption">Pelajaran Seni</div>
                     </div>
                 </div>
             </section>
-        </div>
 
-        <!-- Halaman Kontak -->
-        <div id="contact" class="page">
             <section>
                 <h2><i class="fas fa-address-book"></i> Kontak</h2>
-                <ul class="contact-list">
-                    <li class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-user"></i></div>
-                        <div class="contact-info">
-                            <div class="contact-name">Wali Kelas: Ibu Siti Rahayu, S.Pd</div>
-                            <div class="contact-detail">Email: siti.rahayu@sdnmajujaya.sch.id | Telp: 081234567890</div>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-card-header">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <h3>Sekolah</h3>
                         </div>
-                        <div class="contact-actions">
-                            <button class="contact-btn"><i class="fas fa-envelope"></i></button>
-                            <button class="contact-btn"><i class="fas fa-phone"></i></button>
+                        <div class="contact-card-body">
+                            <p><i class="fas fa-university"></i> Global Mandiri Patrol</p>
+                            <p><i class="fas fa-road"></i> Jl. Wirautama No. 163 Kec, Patrol, Kabupaten Indramayu, Jawa Barat 45258</p>
+                            <p><i class="fas fa-phone"></i> (0234) 567890</p>
                         </div>
-                    </li>
-                    <li class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-school"></i></div>
-                        <div class="contact-info">
-                            <div class="contact-name">Sekolah: SD Negeri Maju Jaya</div>
-                            <div class="contact-detail">Telp: (021) 7654321 | Email: info@sdnmajujaya.sch.id</div>
-                            <div class="contact-detail">Alamat: Jl. Pendidikan No. 123, Jakarta Selatan</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-header">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3>Admin Website</h3>
                         </div>
-                        <div class="contact-actions">
-                            <button class="contact-btn"><i class="fas fa-globe"></i></button>
-                            <button class="contact-btn"><i class="fas fa-map-marker-alt"></i></button>
+                        <div class="contact-card-body">
+                            <p><i class="fas fa-user"></i> Zhafran</p>
+                            <p><i class="fas fa-envelope"></i> zhafranediting23@gmail.com</p>
                         </div>
-                    </li>
-                    <li class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-user-friends"></i></div>
-                        <div class="contact-info">
-                            <div class="contact-name">Ketua Kelas: Ahmad Fauzi</div>
-                            <div class="contact-detail">Email: ahmad.fauzi@sdnmajujaya.sch.id | Telp: 081234567891</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-header">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Ketua Kelas</h3>
                         </div>
-                        <div class="contact-actions">
-                            <button class="contact-btn"><i class="fas fa-envelope"></i></button>
-                            <button class="contact-btn"><i class="fas fa-phone"></i></button>
+                        <div class="contact-card-body">
+                            <p><i class="fas fa-crown"></i> Queen (Ketua Kelas 6B)</p>
+                            <p><i class="fas fa-user"></i> Radit (Wakil Ketua Kelas 6B)</p>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 Kelas 6 - SD Negeri Maju Jaya. All rights reserved.</p>
+            <p>&copy; 2025 Kelas 6 Auriga - Global Mandiri Patrol. All rights reserved.</p>
         </div>
     </footer>
 
@@ -1186,37 +1058,59 @@
         <i class="fas fa-moon"></i>
     </div>
 
-    <!-- Modal untuk Tambah Tugas -->
-    <div class="modal" id="taskModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
-            <h2><i class="fas fa-plus"></i> Tambah Tugas Baru</h2>
-            <form id="taskForm">
-                <div style="margin-bottom: 1rem;">
-                    <label for="taskTitle">Judul Tugas</label>
-                    <input type="text" id="taskTitle" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
-                </div>
-                <div style="margin-bottom: 1rem;">
-                    <label for="taskDesc">Deskripsi</label>
-                    <textarea id="taskDesc" rows="3" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;"></textarea>
-                </div>
-                <div style="margin-bottom: 1rem;">
-                    <label for="taskDeadline">Deadline</label>
-                    <input type="date" id="taskDeadline" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
-                </div>
-                <div style="margin-bottom: 1rem;">
-                    <label>
-                        <input type="checkbox" id="taskUrgent"> Tandai sebagai penting
-                    </label>
-                </div>
-                <button type="submit" class="contact-btn" style="width: 100%;">
-                    <i class="fas fa-save"></i> Simpan Tugas
-                </button>
-            </form>
-        </div>
-    </div>
-
     <script>
+        // Data siswa yang sudah diurutkan A-Z
+        const students = [
+            "Aen", "Aisy", "Alief", "Angga", "Aqila", "Arsyil", "Azka",
+            "Bella", "Berlly",
+            "Daniel", "Dean", "Diba",
+            "Evelyn",
+            "Fahad", "Fira", "Filza",
+            "Ganesha", "Gavriel",
+            "Hafiza", "Hasna", "Hajun",
+            "Imron", "Irwan",
+            "Jalfa", "Jasmine.H", "Jasmine.P", "Jelita",
+            "Kim Gaon",
+            "Naura", "Nowela",
+            "Queen",
+            "Radit", "Rasya", "Rayhan", "Rhean", "Ridho",
+            "Shalsa", "Sofi",
+            "Talita",
+            "Zhafran"
+        ];
+
+        // Fungsi untuk menampilkan daftar siswa
+        function renderStudents() {
+            const container = document.getElementById('studentsContainer');
+            container.innerHTML = '';
+            
+            students.forEach(student => {
+                const card = document.createElement('div');
+                card.className = 'student-card';
+                
+                // Tentukan ikon berdasarkan jenis kelamin
+                let icon = 'fa-user';
+                if (["Queen", "Diba", "Aqila", "Dean", "Talita", "Jelita", "Naura", 
+                     "Hasna", "Jasmine.P", "Hafiza", "Jasmine.H", "Evelyn", "Fira", 
+                     "Bella", "Jalfa", "Filza", "Aisy", "Nowela", "Shalsa", "Sofi"].includes(student)) {
+                    icon = 'fa-user';
+                }
+                
+                card.innerHTML = `
+                    <div class="student-img"><i class="fas ${icon}"></i></div>
+                    <div class="student-info">
+                        <div class="student-name">${student}</div>
+                        <div class="student-nis">Kelas 6 Auriga</div>
+                        ${student === 'Zhafran' ? '<div class="student-nis">(Admin Website)</div>' : ''}
+                        ${student === 'Queen' ? '<div class="student-nis">(Ketua Kelas 6B)</div>' : ''}
+                        ${student === 'Radit' ? '<div class="student-nis">(Wakil Ketua Kelas 6B)</div>' : ''}
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
         // Fungsi untuk menangani navigasi antar halaman
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -1258,141 +1152,16 @@
             });
         });
 
-        // Toggle tema gelap/terang
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            const icon = themeToggle.querySelector('i');
-            
-            if (document.body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        });
-
         // Toggle menu mobile
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         mobileMenuBtn.addEventListener('click', () => {
             document.getElementById('mainNav').classList.toggle('active');
         });
 
-        // Modal untuk tambah tugas
-        const addTaskBtn = document.getElementById('addTaskBtn');
-        const taskModal = document.getElementById('taskModal');
-        const closeModal = document.getElementById('closeModal');
-        const taskForm = document.getElementById('taskForm');
-
-        addTaskBtn.addEventListener('click', () => {
-            taskModal.style.display = 'flex';
+        // Render students when page loads
+        window.addEventListener('load', () => {
+            renderStudents();
         });
-
-        closeModal.addEventListener('click', () => {
-            taskModal.style.display = 'none';
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target === taskModal) {
-                taskModal.style.display = 'none';
-            }
-        });
-
-        // Handle form tambah tugas
-        taskForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const title = document.getElementById('taskTitle').value;
-            const desc = document.getElementById('taskDesc').value;
-            const deadline = document.getElementById('taskDeadline').value;
-            const isUrgent = document.getElementById('taskUrgent').checked;
-            
-            // Format tanggal
-            const deadlineDate = new Date(deadline);
-            const formattedDeadline = deadlineDate.toLocaleDateString('id-ID', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            });
-            
-            // Buat elemen tugas baru
-            const newTask = document.createElement('li');
-            newTask.className = `task-item ${isUrgent ? 'urgent' : ''}`;
-            newTask.innerHTML = `
-                <div class="task-content">
-                    <div class="task-title"><i class="fas ${isUrgent ? 'fa-exclamation-circle' : 'fa-book'}"></i> ${title}</div>
-                    <div class="task-desc">${desc}</div>
-                    <div class="task-deadline"><i class="far fa-clock"></i> Deadline: ${formattedDeadline}</div>
-                </div>
-                <div class="task-actions">
-                    <button class="task-btn complete"><i class="fas fa-check"></i></button>
-                    <button class="task-btn edit"><i class="fas fa-edit"></i></button>
-                </div>
-            `;
-            
-            // Tambahkan ke container tugas
-            document.getElementById('tasksContainer').prepend(newTask);
-            
-            // Reset form dan tutup modal
-            taskForm.reset();
-            taskModal.style.display = 'none';
-            
-            // Tambahkan event listener untuk tombol pada tugas baru
-            newTask.querySelector('.task-btn.complete').addEventListener('click', function() {
-                this.closest('.task-item').style.opacity = '0.5';
-                this.innerHTML = '<i class="fas fa-check-double"></i>';
-                this.style.backgroundColor = '#ccc';
-                this.disabled = true;
-            });
-            
-            newTask.querySelector('.task-btn.edit').addEventListener('click', function() {
-                alert('Fitur edit tugas akan segera hadir!');
-            });
-        });
-
-        // Tandai tugas sebagai selesai
-        document.querySelectorAll('.task-btn.complete').forEach(btn => {
-            btn.addEventListener('click', function() {
-                this.closest('.task-item').style.opacity = '0.5';
-                this.innerHTML = '<i class="fas fa-check-double"></i>';
-                this.style.backgroundColor = '#ccc';
-                this.disabled = true;
-            });
-        });
-
-        // Tombol edit tugas
-        document.querySelectorAll('.task-btn.edit').forEach(btn => {
-            btn.addEventListener('click', function() {
-                alert('Fitur edit tugas akan segera hadir!');
-            });
-        });
-
-        // Animasi saat scrolling
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.stat-card, .student-card, .task-item, .announcement, .gallery-item');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = 1;
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        }
-
-        // Set initial state for animation
-        document.querySelectorAll('.stat-card, .student-card, .task-item, .announcement, .gallery-item').forEach(element => {
-            element.style.opacity = 0;
-            element.style.transform = 'translateY(20px)';
-            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        });
-
-        window.addEventListener('scroll', animateOnScroll);
-        // Trigger once on load
-        window.addEventListener('load', animateOnScroll);
     </script>
 </body>
 </html>
